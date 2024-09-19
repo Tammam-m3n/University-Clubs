@@ -1,4 +1,24 @@
-FROM ubuntu:latest
-LABEL authors="tamma"
+version: '3.8'
 
-ENTRYPOINT ["top", "-b"]
+services:
+  db:
+    container_name: SpringCourse
+    image: postgres
+    environment:
+      POSTGRES_USER: Tammam
+      POSTGRES_PASSWORD: Mohammed
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5544:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
