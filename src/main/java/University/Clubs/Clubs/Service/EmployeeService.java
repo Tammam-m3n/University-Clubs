@@ -4,6 +4,7 @@ import University.Clubs.Clubs.Employee;
 import University.Clubs.Clubs.Repository.EmployeeRepository;
 import University.Clubs.Clubs.Request.EmployeeRequest;
 import University.Clubs.Clubs.Response.EmployeeResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EmployeeService {
 
     @Autowired
@@ -47,8 +49,8 @@ public class EmployeeService {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponse);
 
     }
-    public ResponseEntity<?> findById(Integer id) {
-        Employee employee=EmployeeRepository
-    }
+//    public ResponseEntity<?> findById(Integer id) {
+//        Employee employee=EmployeeRepository
+//    }
 
 }
