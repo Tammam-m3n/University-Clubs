@@ -54,4 +54,8 @@ public class EmployeeService {
         return ResponseEntity.ok().body(employee);
     }
 
+    public ResponseEntity delete(){
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }
