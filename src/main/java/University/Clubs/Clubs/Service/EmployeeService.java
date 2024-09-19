@@ -49,8 +49,9 @@ public class EmployeeService {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponse);
 
     }
-//    public ResponseEntity<?> findById(Integer id) {
-//        Employee employee=EmployeeRepository
-//    }
+    public ResponseEntity<?> findById(Integer id) {
+        Employee employee=employeeRepository.findById(id).orElse(null);
+        return ResponseEntity.ok().body(employee);
+    }
 
 }
