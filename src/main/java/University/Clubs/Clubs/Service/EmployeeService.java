@@ -49,13 +49,21 @@ public class EmployeeService {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponse);
 
     }
-    public ResponseEntity<?> findById(Integer id) {
-        Employee employee=employeeRepository.findById(id).orElse(null);
-        return ResponseEntity.ok().body(employee);
+
+//    public ResponseEntity<?> findById(Integer id) {
+//        Employee employee=employeeRepository.findById(id).orElse(null);
+//        return ResponseEntity.ok().body(employee);
+//    }
+
+    public void deleteEmployeeById(int id){
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        if(employee != null){
+            employeeRepository.deleteById(id);
+        }
     }
 
-    public ResponseEntity delete(){
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public ResponseEntity<?> updateEmployee(EmployeeRequest employeeRequest) {
+
     }
 
 }
