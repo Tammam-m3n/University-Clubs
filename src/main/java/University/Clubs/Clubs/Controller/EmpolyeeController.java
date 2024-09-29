@@ -21,10 +21,6 @@ public class EmpolyeeController {
     public ResponseEntity<?> addEmployee(@RequestBody EmployeeRequest employeeRequest) {
         return employeeService.saveEmployee(employeeRequest);
     }
-    @GetMapping("by_id/{id}")
-        public ResponseEntity<?> getEmployeeById(@PathVariable int id) {
-        return employeeService.getEmployeeById(id);
-    }
 
 
 }
