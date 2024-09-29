@@ -13,8 +13,7 @@ import java.time.LocalDate;
 @Builder
 public class PrResponse {
     private Integer id;
-    private String first_name;
-    private String last_name;
+    private String full_name;
     private String university_number;
     private LocalDate birth_date;
 

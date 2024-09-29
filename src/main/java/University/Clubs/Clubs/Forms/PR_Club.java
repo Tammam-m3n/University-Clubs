@@ -20,10 +20,8 @@ public class PR_Club {
     @SequenceGenerator(name = "pr_id" ,sequenceName = "pr_id" ,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "pr_id")
     private Integer id;
-    @Column(name = "First Name" ,length = 20)
-    private String first_name;
-    @Column(name = "Last Name" ,length = 20)
-    private String last_name;
+    @Column(name = "Full Name" ,length = 20)
+    private String full_name;
     @Column(name = "University Number", unique = true ,length = 9)
     private String university_number;
     @Column(name = "Birth Date")

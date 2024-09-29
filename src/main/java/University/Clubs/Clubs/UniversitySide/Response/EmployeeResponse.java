@@ -1,4 +1,4 @@
-package University.Clubs.Clubs.Response;
+package University.Clubs.Clubs.UniversitySide.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,12 +14,10 @@ import java.time.LocalDate;
 public class EmployeeResponse {
 
     private Integer id;
-    private String first_name;
-    private String mid_name;
-    private String last_name;
+    private String full_name;
     private LocalDate birth_date;
     private String address;
-    private Integer phone;
+    private String phone;
     private String email;
     private String gender;
     private String username;

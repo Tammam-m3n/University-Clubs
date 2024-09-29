@@ -1,14 +1,11 @@
 package University.Clubs.Clubs.Controller;
 
-import University.Clubs.Clubs.Employee;
-import University.Clubs.Clubs.Request.EmployeeRequest;
-import University.Clubs.Clubs.Response.EmployeeResponse;
-import University.Clubs.Clubs.Service.EmployeeService;
+import University.Clubs.Clubs.UniversitySide.Employee;
+import University.Clubs.Clubs.UniversitySide.Request.EmployeeRequest;
+import University.Clubs.Clubs.UniversitySide.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/employee")

@@ -1,4 +1,4 @@
-package University.Clubs.Clubs.Request;
+package University.Clubs.Clubs.UniversitySide.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,12 +11,10 @@ import java.time.LocalDate;
 @Data
 public class EmployeeRequest {
 
-        private String first_name;
-        private String mid_name;
-        private String last_name;
+        private String full_name;
         private LocalDate birth_date;
         private String address;
-        private Integer phone;
+        private String phone;
         private String email;
         private String gender;
         private String username;

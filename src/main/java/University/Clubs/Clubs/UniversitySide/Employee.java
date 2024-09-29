@@ -1,4 +1,4 @@
-package University.Clubs.Clubs;
+package University.Clubs.Clubs.UniversitySide;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,29 +15,25 @@ public class Employee {
     @SequenceGenerator(name = "employee_id" ,sequenceName = "employee_id" ,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "employee_id")
     private Integer id;
-
     @Column(name = "Full_Name" ,length = 20)
     private String full_name;
-
     @Column(name = "Birth Date")
     private LocalDate birth_date;
-
     @Column(name = "Address")
     private String address;
-
     @Column(name = "Phone")
-    private Integer phone;
-
+    private String phone;
     @Column(name = "Email")
     private String email;
-
     @Column(name = "Gender")
     private String gender;
 
     private String username;
     private String password;
 
-    public Employee(Integer id, String full_name,LocalDate birth_date, String address, Integer phone, String email, String gender, String username, String password) {
+    public Employee() {}
+
+    public Employee(Integer id, String full_name,LocalDate birth_date, String address, String phone, String email, String gender, String username, String password) {
         this.id = id;
         this.full_name = full_name;
         this.birth_date = birth_date;
@@ -47,10 +43,6 @@ public class Employee {
         this.gender = gender;
         this.username = username;
         this.password = password;
-    }
-
-    public Employee() {
-
     }
 
 //        @Override

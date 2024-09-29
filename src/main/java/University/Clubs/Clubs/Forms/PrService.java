@@ -13,8 +13,7 @@ public class PrService {
 
     public ResponseEntity<?> save(PrRequest prRequest){
         PR_Club pr = PR_Club.builder()
-                .first_name(prRequest.getFirst_name())
-                .last_name(prRequest.getLast_name())
+                .full_name(prRequest.getFull_name())
                 .university_number(prRequest.getUniversity_number())
                 .birth_date(prRequest.getBirth_date())
                 .phone(prRequest.getPhone())
@@ -29,8 +28,7 @@ public class PrService {
         prRepository.save(pr);
         PrResponse prResponse = PrResponse.builder()
                 .id(pr.getId())
-                .first_name(prRequest.getFirst_name())
-                .last_name(prRequest.getLast_name())
+                .full_name(prRequest.getFull_name())
                 .university_number(prRequest.getUniversity_number())
                 .birth_date(prRequest.getBirth_date())
                 .phone(prRequest.getPhone())
@@ -55,8 +53,7 @@ public class PrService {
     public PR_Club update(PR_Club pr_club){
         PR_Club pr = prRepository.findById(pr_club.getId()).orElse(null);
         if(pr != null){
-            pr.setFirst_name(pr_club.getFirst_name());
-            pr.setLast_name(pr_club.getLast_name());
+            pr.setFull_name(pr_club.getFull_name());
             pr.setUniversity_number(pr_club.getUniversity_number());
             pr.setBirth_date(pr_club.getBirth_date());
             pr.setPhone(pr_club.getPhone());
