@@ -1,4 +1,4 @@
-package University.Clubs.Clubs.Response;
+package University.Clubs.Clubs.Forms;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,17 +11,20 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Builder
-public class EmployeeResponse {
-
+public class PrResponse {
     private Integer id;
     private String first_name;
-    private String mid_name;
     private String last_name;
+    private String university_number;
     private LocalDate birth_date;
-    private String address;
-    private Integer phone;
+
+    private String phone;
+    private String sm_account;
     private String email;
-    private String gender;
-    private String username;
-    private String password;
+
+    private String basic_skills;
+    private String workshops;
+    private String training_courses;
+    private String languages;
+    private String other_interests;
 }

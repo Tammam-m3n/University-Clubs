@@ -12,42 +12,34 @@ import java.time.LocalDate;
 public class Employee {
 
     @Id
-    @SequenceGenerator(name = "person_id" ,sequenceName = "person_id" ,allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "person_id")
-    protected Integer id;
+    @SequenceGenerator(name = "employee_id" ,sequenceName = "employee_id" ,allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "employee_id")
+    private Integer id;
 
-    @Column(name = "First Name" ,length = 20)
-    protected String first_name;
-
-    @Column(name = "Mid Name" ,length = 20)
-    protected String mid_name;
-
-    @Column(name = "Last Name" ,length = 20)
-    protected String last_name;
+    @Column(name = "Full_Name" ,length = 20)
+    private String full_name;
 
     @Column(name = "Birth Date")
-    protected LocalDate birth_date;
+    private LocalDate birth_date;
 
     @Column(name = "Address")
-    protected String address;
+    private String address;
 
     @Column(name = "Phone")
-    protected Integer phone;
+    private Integer phone;
 
     @Column(name = "Email")
-    protected String email;
+    private String email;
 
     @Column(name = "Gender")
-    protected String gender;
+    private String gender;
 
-    protected String username;
-    protected String password;
+    private String username;
+    private String password;
 
-    public Employee(Integer id, String first_name, String mid_name, String last_name, LocalDate birth_date, String address, Integer phone, String email, String gender, String username, String password) {
+    public Employee(Integer id, String full_name,LocalDate birth_date, String address, Integer phone, String email, String gender, String username, String password) {
         this.id = id;
-        this.first_name = first_name;
-        this.mid_name = mid_name;
-        this.last_name = last_name;
+        this.full_name = full_name;
         this.birth_date = birth_date;
         this.address = address;
         this.phone = phone;
@@ -61,7 +53,7 @@ public class Employee {
 
     }
 
-    //    @Override
+//        @Override
 //    public String toString() {
 //        return "Employee{" +
 //                "salary=" + salary +

@@ -44,26 +44,33 @@ public class EmployeeService {
                 .gender(employee.getGender())
                 .username(employee.getUsername())
                 .password(employee.getPassword())
-
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponse);
 
     }
 
-//    public ResponseEntity<?> findById(Integer id) {
-//        Employee employee=employeeRepository.findById(id).orElse(null);
-//        return ResponseEntity.ok().body(employee);
-//    }
-
-    public void deleteEmployeeById(int id){
+    public void deleteById(int id){
         Employee employee = employeeRepository.findById(id).orElse(null);
         if(employee != null){
             employeeRepository.deleteById(id);
         }
     }
 
-    public ResponseEntity<?> updateEmployee(EmployeeRequest employeeRequest) {
-
+    public Employee updateEmployee(Employee employee) {
+        Employee employ = employeeRepository.findById(employee.getId()).orElse(null);
+        if(employ != null){
+            employ.setFirst_name(employee.getFirst_name());
+            employ.setMid_name(employee.getMid_name());
+            employ.setLast_name(employee.getLast_name());
+            employ.setBirth_date(employee.getBirth_date());
+            employ.setAddress(employee.getAddress());
+            employ.setPhone(employee.getPhone());
+            employ.setEmail(employee.getEmail());
+            employ.setGender(employee.getGender());
+            employ.setUsername(employee.getUsername());
+            employ.setPassword(employee.getPassword());
+            employeeRepository.save(employ);
+        }
+        return employ;
     }
-
 }
