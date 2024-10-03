@@ -51,7 +51,7 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Employee employee) {
-        Employee employ = employeeRepository.findById(employee.getId()).orElse(null);
+        Employee employ = employeeRepository.findById(employee.getEmployee_id()).orElse(null);
         if(employ != null){
             employ.setFull_name(employee.getFull_name());
             employ.setBirth_date(employee.getBirth_date());

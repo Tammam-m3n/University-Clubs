@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Employee")
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 public class Employee {
@@ -14,52 +16,29 @@ public class Employee {
     @Id
     @SequenceGenerator(name = "employee_id" ,sequenceName = "employee_id" ,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "employee_id")
-    private Integer id;
-    @Column(name = "Full_Name" ,length = 20)
+    private Integer employee_id;
+
+    @Column(name = "full name" ,length = 20)
     private String full_name;
-    @Column(name = "Birth Date")
+
+    @Column(name = "birth date")
     private LocalDate birth_date;
-    @Column(name = "Address")
+
+    @Column(name = "address")
     private String address;
-    @Column(name = "Phone")
+
+    @Column(name = "phone")
     private String phone;
-    @Column(name = "Email")
+
+    @Column(name = "email")
     private String email;
-    @Column(name = "Gender")
+
+    @Column(name = "gender")
     private String gender;
 
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
-
-    public Employee() {}
-
-    public Employee(Integer id, String full_name,LocalDate birth_date, String address, String phone, String email, String gender, String username, String password) {
-        this.id = id;
-        this.full_name = full_name;
-        this.birth_date = birth_date;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.gender = gender;
-        this.username = username;
-        this.password = password;
-    }
-
-//        @Override
-//    public String toString() {
-//        return "Employee{" +
-//                "salary=" + salary +
-//                ", id=" + id +
-//                ", first_name='" + first_name + '\'' +
-//                ", mid_name='" + mid_name + '\'' +
-//                ", last_name='" + last_name + '\'' +
-//                ", birth_date=" + birth_date +
-//                ", address='" + address + '\'' +
-//                ", phone=" + phone +
-//                ", email='" + email + '\'' +
-//                ", gender='" + gender + '\'' +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                '}';
-//    }
 }

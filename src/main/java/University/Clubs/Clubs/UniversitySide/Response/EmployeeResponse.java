@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Builder
 public class EmployeeResponse {
 
-    private Integer id;
+    private Integer employee_id;
     private String full_name;
     private LocalDate birth_date;
     private String address;

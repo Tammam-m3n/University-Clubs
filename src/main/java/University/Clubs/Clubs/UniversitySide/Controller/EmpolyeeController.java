@@ -1,4 +1,4 @@
-package University.Clubs.Clubs.Controller;
+package University.Clubs.Clubs.UniversitySide.Controller;
 
 import University.Clubs.Clubs.UniversitySide.Employee;
 import University.Clubs.Clubs.UniversitySide.Request.EmployeeRequest;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/employee")
+@RequestMapping(path = "api/e1/employee")
 public class EmpolyeeController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class EmpolyeeController {
         employeeService.deleteById(id);
     }
 
-    @PostMapping("update")
+    @PostMapping("update_employee")
     public Employee updateEmployee(@RequestBody Employee employee) {
         return employeeService.updateEmployee(employee);
     }
