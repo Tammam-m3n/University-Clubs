@@ -1,6 +1,6 @@
 package University.Clubs.Clubs.Security.config;
 
-import com.SpringCourse.Startup.Security.user.UserRepository;
+import University.Clubs.Clubs.Student.Repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
 
-    private final UserRepository repository;
+    private final StudentRepository repository;
     @Bean
     public UserDetailsService userDetailsService(){
-        return username -> repository.findByEmail(username)
+        return username -> repository.findByUniversityNumber(username)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
     }
 

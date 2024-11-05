@@ -47,7 +47,7 @@ public class Student implements UserDetails {
     private String email;
 
     @Column(name = "university number" ,length = 9)
-    private String university_number;
+    private String universityNumber;
 
     @Column(name = "password")
     private String password;
@@ -70,8 +70,6 @@ public class Student implements UserDetails {
     @OneToMany
     private List<ClubMember> clubMembers;
 
-    @ManyToOne
-    private PRManager prManager;
 
     @OneToMany
     private List<ClubMembershipRequest> clubMembershipRequests;
@@ -95,7 +93,7 @@ public class Student implements UserDetails {
 
     @Override
     public String getUsername() {
-        return university_number;
+        return universityNumber;
     }
 
     @Override

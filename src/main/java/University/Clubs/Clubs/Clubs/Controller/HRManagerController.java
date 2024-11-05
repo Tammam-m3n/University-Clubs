@@ -20,15 +20,15 @@ public class HRManagerController {
         return hrManagerService.save(hrManagerRequest);
     }
 
-    @PutMapping("update_hr_manager")
-    @PreAuthorize("hasRole(ADMIN)")
-    public HRManager update(HRManager hrManager) {
-        return hrManagerService.update(hrManager);
-    }
+//    @PutMapping("update_hr_manager")
+//    @PreAuthorize("hasRole(ADMIN)")
+//    public HRManager update(HRManager hrManager) {
+//        return hrManagerService.update(hrManager);
+//    }
 
     @PutMapping("admin_update_hr_manager")
-    public HRManager adminUpdate(HRManager hrManager) {
-        return hrManagerService.admin_update(hrManager);
+    public HRManager adminUpdate(String university_number) {
+        return hrManagerService.admin_update(university_number);
     }
 
     @GetMapping("by_hr_manager_id/{id}")

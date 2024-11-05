@@ -2,7 +2,6 @@ package University.Clubs.Clubs.Student.Service;
 
 import University.Clubs.Clubs.Clubs.PRManager;
 import University.Clubs.Clubs.Clubs.Repository.PRManagerRepository;
-import University.Clubs.Clubs.Clubs.Response.PRManagerResponse;
 import University.Clubs.Clubs.Student.Repository.StudentRepository;
 import University.Clubs.Clubs.Student.Request.StudentRequest;
 import University.Clubs.Clubs.Student.Response.StudentResponse;
@@ -34,14 +33,13 @@ public class StudentService {
                 .address(studentRequest.getAddress())
                 .phone_number(studentRequest.getPhone_number())
                 .email(studentRequest.getEmail())
-                .university_number(studentRequest.getUniversity_number())
+                .universityNumber(studentRequest.getUniversity_number())
                 .password(studentRequest.getPassword())
                 .college(studentRequest.getCollege())
                 .skills(studentRequest.getSkills())
                 .interests(studentRequest.getInterests())
                 .social_media_account(studentRequest.getSocial_media_account())
                 .gpa(studentRequest.getGpa())
-                .prManager(prManager)
                 .build();
         studentRepository.save(student);
 
@@ -57,7 +55,7 @@ public class StudentService {
                 .address(student.getAddress())
                 .phone_number(student.getPhone_number())
                 .email(student.getEmail())
-                .university_number(student.getUniversity_number())
+                .university_number(student.getUniversityNumber())
                 .password(student.getPassword())
                 .college(student.getCollege())
                 .skills(student.getSkills())
@@ -82,7 +80,7 @@ public class StudentService {
                     .address(student.getAddress())
                     .phone_number(student.getPhone_number())
                     .email(student.getEmail())
-                    .university_number(student.getUniversity_number())
+                    .university_number(student.getUniversityNumber())
                     .password(student.getPassword())
                     .college(student.getCollege())
                     .skills(student.getSkills())
@@ -108,7 +106,7 @@ public class StudentService {
                 .address(student.getAddress())
                 .phone_number(student.getPhone_number())
                 .email(student.getEmail())
-                .university_number(student.getUniversity_number())
+                .university_number(student.getUniversityNumber())
                 .password(student.getPassword())
                 .college(student.getCollege())
                 .skills(student.getSkills())
@@ -137,7 +135,7 @@ public class StudentService {
             stud.setAddress(student.getAddress());
             stud.setPhone_number(student.getPhone_number());
             stud.setEmail(student.getEmail());
-            stud.setUniversity_number(student.getUniversity_number());
+            stud.setUniversityNumber(student.getUniversityNumber());
             stud.setPassword(student.getPassword());
             stud.setCollege(student.getCollege());
             stud.setSkills(student.getSkills());

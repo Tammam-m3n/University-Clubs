@@ -13,9 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static University.Clubs.Clubs.Security.user.Role.ADMIN;
-import static University.Clubs.Clubs.Security.user.Role.Manager;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
@@ -34,8 +31,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req
-                                .requestMatchers("/api/v1/auth/login").permitAll()
-                                .requestMatchers("/api/v1/auth/register").permitAll()
+                                .requestMatchers("/api/v1/auth/**").permitAll()
 //                                .requestMatchers("api/v1/auth/admin/**").hasRole(ADMIN.name())
 //                                .requestMatchers("api/v1/auth/management/**").hasAnyRole(ADMIN.name(),Manager.name())
 //                                .requestMatchers(GET,"api/v1/manager/**").hasAnyAuthority(ADMIN_READ.name(),MANAGER_READ.name())

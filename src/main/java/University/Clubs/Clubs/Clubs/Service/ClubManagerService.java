@@ -5,6 +5,7 @@ import University.Clubs.Clubs.Clubs.ClubManager;
 import University.Clubs.Clubs.Clubs.Repository.ClubManagerRepository;
 import University.Clubs.Clubs.Clubs.Repository.ClubRepository;
 import University.Clubs.Clubs.Clubs.Request.ClubManagerRequest;
+import University.Clubs.Clubs.Clubs.Request.ClubManagerUpdateRequest;
 import University.Clubs.Clubs.Clubs.Response.ClubManagerResponse;
 import University.Clubs.Clubs.Clubs.Response.ClubResponse;
 import University.Clubs.Clubs.Student.Repository.StudentRepository;
@@ -18,6 +19,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static University.Clubs.Clubs.Security.user.Role.CLUB_MANAGER;
+import static University.Clubs.Clubs.Security.user.Role.USER;
 
 @Service
 @RequiredArgsConstructor
@@ -36,8 +40,6 @@ public class ClubManagerService {
         Club club = clubRepository.findById(clubManagerRequest.getClub_id()).orElse(null);
 
         ClubManager clubManager = ClubManager.builder()
-                .university_number(clubManagerRequest.getUniversity_number()            )
-                .password(clubManagerRequest.getPassword())
                 .student(student)
                 .club(club)
                 .build();
@@ -50,7 +52,7 @@ public class ClubManagerService {
                 .address(student.getAddress())
                 .phone_number(student.getPhone_number())
                 .email(student.getEmail())
-                .university_number(student.getUniversity_number())
+                .university_number(student.getUniversityNumber())
                 .password(student.getPassword())
                 .college(student.getCollege())
                 .skills(student.getSkills())
@@ -69,8 +71,6 @@ public class ClubManagerService {
 
         ClubManagerResponse clubManagerResponse = ClubManagerResponse.builder()
                 .club_manager_id(clubManager.getClub_manager_id())
-                .university_number(clubManager.getUniversity_number())
-                .password(clubManager.getPassword())
                 .student(studentResponse)
                 .club(clubResponse)
                 .build();
@@ -91,7 +91,7 @@ public class ClubManagerService {
                     .address(student.getAddress())
                     .phone_number(student.getPhone_number())
                     .email(student.getEmail())
-                    .university_number(student.getUniversity_number())
+                    .university_number(student.getUniversityNumber())
                     .password(student.getPassword())
                     .college(student.getCollege())
                     .skills(student.getSkills())
@@ -111,8 +111,6 @@ public class ClubManagerService {
 
             ClubManagerResponse clubManagerResponse = ClubManagerResponse.builder()
                     .club_manager_id(clubManager.getClub_manager_id())
-                    .university_number(clubManager.getUniversity_number())
-                    .password(clubManager.getPassword())
                     .student(studentResponse)
                     .club(clubResponse)
                     .build();
@@ -129,8 +127,6 @@ public class ClubManagerService {
         }
         ClubManagerResponse clubManagerResponse = ClubManagerResponse.builder()
                 .club_manager_id(clubManager.getClub_manager_id())
-                .university_number(clubManager.getUniversity_number())
-                .password(clubManager.getPassword())
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(clubManagerResponse);
     }
@@ -143,27 +139,39 @@ public class ClubManagerService {
         }
     }
 
-    public ClubManager update(ClubManager clubManager) {
+//    public ClubManager update(ClubManager clubManager) {
+//
+//        ClubManager clubManager1 = clubManagerRepository.findById(clubManager.getClub_manager_id()).orElse(null);
+//
+//        if (clubManager1 != null) {
+//            clubManagerRepository.save(clubManager1);
+//        }
+//        return clubManager;
+//    }
 
-        ClubManager clubManager1 = clubManagerRepository.findById(clubManager.getClub_manager_id()).orElse(null);
+    public ClubManager admin_update(ClubManagerUpdateRequest request) {
 
-        if (clubManager1 != null) {
-            clubManager1.setPassword(clubManager.getPassword());
-            clubManagerRepository.save(clubManager1);
+        Club club = clubRepository.findById(request.getClub_id()).orElse(null);
+        ClubManager manager = club.getClubManager();
+        Student oldStudent = manager.getStudent();
+
+        Student newStudent = studentRepository.findByUniversityNumber(request.getUniversity_number()).orElse(null);
+
+        if (newStudent == null) {
+            return manager;
         }
-        return clubManager;
-    }
 
-    public ClubManager admin_update(ClubManager clubManager) {
+        oldStudent.setRole(USER);
+        studentRepository.save(oldStudent);
 
-        ClubManager clubManager1 = clubManagerRepository.findById(clubManager.getClub_manager_id()).orElse(null);
-        Student student = clubManager1.getStudent();
+        newStudent.setRole(CLUB_MANAGER);
+        studentRepository.save(newStudent);
 
-        if (clubManager1 != null) {
-            clubManager1.setUniversity_number(clubManager.getUniversity_number());
-            student.setStudent_id(student.getStudent_id());
-            clubManagerRepository.save(clubManager1);
-        }
-        return clubManager;
+        manager.setStudent(newStudent);
+        clubManagerRepository.save(manager);
+        club.setClubManager(manager);
+
+        return manager;
+
     }
 }

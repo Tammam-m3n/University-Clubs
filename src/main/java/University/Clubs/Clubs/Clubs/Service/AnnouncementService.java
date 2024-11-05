@@ -51,7 +51,7 @@ public class AnnouncementService {
 
         PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                 .pr_manager_id(prManager.getPr_manager_id())
-                .university_number(prManager.getUniversity_number())
+                .university_number(prManager.getStudent().getUniversityNumber())
                 .build();
 
         AnnouncementResponse announcementResponse = AnnouncementResponse.builder()
@@ -80,7 +80,7 @@ public class AnnouncementService {
             PRManager prManager = announcement.getPrManager();
             PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                     .pr_manager_id(prManager.getPr_manager_id())
-                    .university_number(prManager.getUniversity_number())
+                    .university_number(prManager.getStudent().getUniversityNumber())
                     .build();
 
             AnnouncementResponse announcementResponse = AnnouncementResponse.builder()
@@ -112,7 +112,7 @@ public class AnnouncementService {
         PRManager prManager = announcement.getPrManager();
         PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                 .pr_manager_id(prManager.getPr_manager_id())
-                .university_number(prManager.getUniversity_number())
+                .university_number(prManager.getStudent().getUniversityNumber())
                 .build();
 
         AnnouncementResponse announcementResponse = AnnouncementResponse.builder()

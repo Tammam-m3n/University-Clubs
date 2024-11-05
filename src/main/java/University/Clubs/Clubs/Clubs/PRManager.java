@@ -21,11 +21,11 @@ public class PRManager {
     @Column(name = "pr_manager_id")
     private Integer pr_manager_id = 1;
 
-    @Column(name = "university_number", nullable = false)
-    private String university_number;
-
-    @Column(name = "password", nullable = false)
-    private String password;
+//    @Column(name = "university_number", nullable = false)
+//    private String university_number;
+//
+//    @Column(name = "password", nullable = false)
+//    private String password;
 
     @OneToMany
     private List<Club> clubs;

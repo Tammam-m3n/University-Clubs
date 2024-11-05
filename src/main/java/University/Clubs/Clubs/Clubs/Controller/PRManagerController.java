@@ -30,7 +30,7 @@ public class PRManagerController {
     }
 
     @PutMapping("update_pr_manager")
-    public PRManager updatePRManager(PRManager prManager) {
-        return prManagerService.update(prManager);
+    public PRManager updatePRManager(@RequestBody String uni_num) {
+        return prManagerService.admin_update(uni_num);
     }
 }

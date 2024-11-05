@@ -21,11 +21,11 @@ public class HRManager {
     @Column(name = "hr_manager_id")
     private Integer hr_manager_id = 1;
 
-    @Column(name = "university_number")
-    private String university_number;
-
-    @Column(name = "password")
-    private String password;
+//    @Column(name = "university_number")
+//    private String university_number;
+//
+//    @Column(name = "password")
+//    private String password;
 
     @OneToMany
     private List<Club> clubs;

@@ -53,11 +53,11 @@ public class AppointmentService {
                 .build();
 
         PRManagerResponse prManagerResponse = PRManagerResponse.builder()
-                .university_number(hrManager.getUniversity_number())
+                .university_number(hrManager.getStudent().getUniversityNumber())
                 .build();
 
         HRManagerResponse hrManagerResponse = HRManagerResponse.builder()
-                .university_number(hrManager.getUniversity_number())
+                .university_number(hrManager.getStudent().getUniversityNumber())
                 .build();
 
         AppointmentResponse appointmentResponse = AppointmentResponse.builder()
@@ -84,13 +84,13 @@ public class AppointmentService {
             PRManager prManager = appointment.getPrManager();
             PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                     .pr_manager_id(prManager.getPr_manager_id())
-                    .university_number(prManager.getUniversity_number())
+                    .university_number(prManager.getStudent().getUniversityNumber())
                     .build();
 
             HRManager hrManager = appointment.getHrManager();
             HRManagerResponse hrManagerResponse = HRManagerResponse.builder()
                     .hr_manager_id(hrManager.getHr_manager_id())
-                    .university_number(hrManager.getUniversity_number())
+                    .university_number(hrManager.getStudent().getUniversityNumber())
                     .build();
 
             AppointmentResponse appointmentResponse=AppointmentResponse.builder()
@@ -114,7 +114,7 @@ public class AppointmentService {
         PRManager prManager = appointment.getPrManager();
         PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                 .pr_manager_id(prManager.getPr_manager_id())
-                .university_number(prManager.getUniversity_number())
+                .university_number(prManager.getStudent().getUniversityNumber())
                 .build();
 
         Student student = appointment.getStudent();
@@ -126,7 +126,7 @@ public class AppointmentService {
         HRManager hrManager = appointment.getHrManager();
         HRManagerResponse hrManagerResponse = HRManagerResponse.builder()
                 .hr_manager_id(hrManager.getHr_manager_id())
-                .university_number(hrManager.getUniversity_number())
+                .university_number(hrManager.getStudent().getUniversityNumber())
                 .build();
 
         AppointmentResponse appointmentResponse =AppointmentResponse.builder()

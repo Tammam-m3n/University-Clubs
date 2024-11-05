@@ -1,4 +1,4 @@
-package University.Clubs.Clubs.Security.auth;
+package University.Clubs.Clubs.Clubs.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class ClubManagerUpdateRequest {
 
+    private int club_id;
     private String university_number;
-    private String password;
+
 }

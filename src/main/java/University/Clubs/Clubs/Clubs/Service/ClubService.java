@@ -1,13 +1,7 @@
 package University.Clubs.Clubs.Clubs.Service;
 
-import University.Clubs.Clubs.Clubs.Club;
-import University.Clubs.Clubs.Clubs.ClubManager;
-import University.Clubs.Clubs.Clubs.HRManager;
-import University.Clubs.Clubs.Clubs.PRManager;
-import University.Clubs.Clubs.Clubs.Repository.ClubManagerRepository;
-import University.Clubs.Clubs.Clubs.Repository.ClubRepository;
-import University.Clubs.Clubs.Clubs.Repository.HRManagerRepository;
-import University.Clubs.Clubs.Clubs.Repository.PRManagerRepository;
+import University.Clubs.Clubs.Clubs.*;
+import University.Clubs.Clubs.Clubs.Repository.*;
 import University.Clubs.Clubs.Clubs.Request.ClubRequest;
 import University.Clubs.Clubs.Clubs.Response.ClubManagerResponse;
 import University.Clubs.Clubs.Clubs.Response.ClubResponse;
@@ -34,6 +28,8 @@ public class ClubService {
     private HRManagerRepository hrManagerRepository;
     @Autowired
     private ClubManagerRepository clubManagerRepository;
+    @Autowired
+    private ClubMemberRepository clubMemberRepository;
 
     public ResponseEntity<?> save(ClubRequest clubRequest) {
 
@@ -54,17 +50,17 @@ public class ClubService {
 
         PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                 .pr_manager_id(prManager.getPr_manager_id())
-                .university_number(prManager.getUniversity_number())
+                .university_number(prManager.getStudent().getUniversityNumber())
                 .build();
 
         HRManagerResponse hrManagerResponse = HRManagerResponse.builder()
                 .hr_manager_id(hrManager.getHr_manager_id())
-                .university_number(hrManager.getUniversity_number())
+                .university_number(hrManager.getStudent().getUniversityNumber())
                 .build();
 
         ClubManagerResponse clubManagerResponse =ClubManagerResponse.builder()
                 .club_manager_id(clubManager.getClub_manager_id())
-                .university_number(clubManager.getUniversity_number())
+                .university_number(clubManager.getStudent().getUniversityNumber())
                 .build();
 
         ClubResponse clubResponse = ClubResponse.builder()
@@ -89,19 +85,19 @@ public class ClubService {
             PRManager prManager = club.getPrManager();
             PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                     .pr_manager_id(prManager.getPr_manager_id())
-                    .university_number(prManager.getUniversity_number())
+                    .university_number(prManager.getStudent().getUniversityNumber())
                     .build();
 
             HRManager hrManager= club.getHrManager();
             HRManagerResponse hrManagerResponse= HRManagerResponse.builder()
                     .hr_manager_id(hrManager.getHr_manager_id())
-                    .university_number(hrManager.getUniversity_number())
+                    .university_number(hrManager.getStudent().getUniversityNumber())
                     .build();
 
             ClubManager clubManager= club.getClubManager();
             ClubManagerResponse clubManagerResponse =ClubManagerResponse.builder()
                     .club_manager_id(clubManager.getClub_manager_id())
-                    .university_number(clubManager.getUniversity_number())
+                    .university_number(clubManager.getStudent().getUniversityNumber())
                     .build();
 
             ClubResponse clubResponse = ClubResponse.builder()
@@ -129,19 +125,19 @@ public class ClubService {
         PRManager prManager = club.getPrManager();
         PRManagerResponse prManagerResponse = PRManagerResponse.builder()
                 .pr_manager_id(prManager.getPr_manager_id())
-                .university_number(prManager.getUniversity_number())
+                .university_number(prManager.getStudent().getUniversityNumber())
                 .build();
 
         HRManager hrManager = club.getHrManager();
         HRManagerResponse hrManagerResponse=HRManagerResponse.builder()
                 .hr_manager_id(hrManager.getHr_manager_id())
-                .university_number(hrManager.getUniversity_number())
+                .university_number(hrManager.getStudent().getUniversityNumber())
                 .build();
 
         ClubManager clubManager= club.getClubManager();
         ClubManagerResponse clubManagerResponse =ClubManagerResponse.builder()
                 .club_manager_id(clubManager.getClub_manager_id())
-                .university_number(clubManager.getUniversity_number())
+                .university_number(clubManager.getStudent().getUniversityNumber())
                 .build();
 
         ClubResponse clubResponse = ClubResponse.builder()
@@ -179,5 +175,10 @@ public class ClubService {
             clubRepository.save(club1);
         }
         return club;
+    }
+
+    public List<ClubMember> getAllStudentsInAClub(int clubId) {
+        return null;
+//        return clubMemberRepository.getClubMemberByClubClub_id(clubId).orElse(null);
     }
 }

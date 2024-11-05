@@ -20,11 +20,11 @@ public class ClubManager {
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "club_manager_id")
     private Integer club_manager_id;
 
-    @Column(name = "university_number")
-    private String university_number;
-
-    @Column(name = "password")
-    private String password;
+//    @Column(name = "university_number")
+//    private String university_number;
+//
+//    @Column(name = "password")
+//    private String password;
 
     @OneToOne
     private Club club;

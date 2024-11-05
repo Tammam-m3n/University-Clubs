@@ -4,6 +4,7 @@ import University.Clubs.Clubs.Clubs.HRManager;
 import University.Clubs.Clubs.Clubs.Repository.HRManagerRepository;
 import University.Clubs.Clubs.Clubs.Request.HRManagerRequest;
 import University.Clubs.Clubs.Clubs.Response.HRManagerResponse;
+import University.Clubs.Clubs.Security.user.Role;
 import University.Clubs.Clubs.Student.Repository.StudentRepository;
 import University.Clubs.Clubs.Student.Response.StudentResponse;
 import University.Clubs.Clubs.Student.Student;
@@ -28,8 +29,6 @@ public class HRManagerService {
         Student student = studentRepository.findById(hrManagerRequest.getStudent_id()).orElse(null);
 
         HRManager hrManager = HRManager.builder()
-                .university_number(hrManagerRequest.getUniversity_number())
-                .password(hrManagerRequest.getPassword())
                 .student(student)
                 .build();
         hrManagerRepository.save(hrManager);
@@ -41,7 +40,7 @@ public class HRManagerService {
                 .address(student.getAddress())
                 .phone_number(student.getPhone_number())
                 .email(student.getEmail())
-                .university_number(student.getUniversity_number())
+                .university_number(student.getUniversityNumber())
                 .password(student.getPassword())
                 .college(student.getCollege())
                 .skills(student.getSkills())
@@ -52,8 +51,6 @@ public class HRManagerService {
 
         HRManagerResponse hrManagerResponse = HRManagerResponse.builder()
                 .hr_manager_id(hrManager.getHr_manager_id())
-                .university_number(hrManager.getUniversity_number())
-                .password(hrManager.getPassword())
                 .student(studentResponse)
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(hrManagerResponse);
@@ -74,7 +71,7 @@ public class HRManagerService {
                 .address(student.getAddress())
                 .phone_number(student.getPhone_number())
                 .email(student.getEmail())
-                .university_number(student.getUniversity_number())
+                .university_number(student.getUniversityNumber())
                 .password(student.getPassword())
                 .college(student.getCollege())
                 .skills(student.getSkills())
@@ -85,8 +82,6 @@ public class HRManagerService {
 
         HRManagerResponse hrManagerResponse = HRManagerResponse.builder()
                 .hr_manager_id(hrManager.getHr_manager_id())
-                .university_number(hrManager.getUniversity_number())
-                .password(hrManager.getPassword())
                 .student(studentResponse)
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(hrManagerResponse);
@@ -100,27 +95,36 @@ public class HRManagerService {
         }
     }
 
-    public HRManager update(HRManager hrManager) {
+//    public HRManager update(HRManager hrManager) {
+//
+//        HRManager hrManager1 = hrManagerRepository.findById(hrManager.getHr_manager_id()).orElse(null);
+//
+//        if (hrManager1 != null) {
+//            hrManager1.setPassword(hrManager.getPassword());
+//            hrManagerRepository.save(hrManager1);
+//        }
+//        return hrManager;
+//    }
 
-        HRManager hrManager1 = hrManagerRepository.findById(hrManager.getHr_manager_id()).orElse(null);
+    public HRManager admin_update(String university_number) {
 
-        if (hrManager1 != null) {
-            hrManager1.setPassword(hrManager.getPassword());
-            hrManagerRepository.save(hrManager1);
+        HRManager hrManage = hrManagerRepository.findById(1).orElse(null);
+        Student oldStudent = studentRepository.findById(hrManage.getStudent().getStudent_id()).orElse(null);
+        Student newStudent = studentRepository.findByUniversityNumber(university_number).orElse(null);
+
+        if(newStudent == null) {
+            return  hrManage;
         }
-        return hrManager;
-    }
 
-    public HRManager admin_update(HRManager hrManager) {
 
-        HRManager hrManage = hrManagerRepository.findById(hrManager.getHr_manager_id()).orElse(null);
-        Student student = hrManager.getStudent();
+        oldStudent.setRole(Role.USER);
+        studentRepository.save(oldStudent);
 
-        if (hrManage != null) {
-            hrManage.setUniversity_number(hrManager.getUniversity_number());
-            student.setStudent_id(student.getStudent_id());
-            hrManagerRepository.save(hrManage);
-        }
+        newStudent.setRole(Role.USER);
+        studentRepository.save(newStudent);
+
+        hrManage.setStudent(newStudent);
+        hrManagerRepository.save(hrManage);
         return hrManage;
     }
 }
