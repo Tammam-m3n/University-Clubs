@@ -1,6 +1,7 @@
 package University.Clubs.Clubs.Clubs;
 
 import University.Clubs.Clubs.Clubs.Enum.StatusRequest;
+import University.Clubs.Clubs.Student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,12 @@ public class ClubMembershipRequest {
     @Column(name = "status")
     private StatusRequest status;
 
-    @Column(name = "submission date")
+    @Column(name = "submission date", nullable = false)
     private LocalDate submission_date;
+
+    @ManyToOne
+    private Student student;
+
+    @ManyToOne
+    private Club club;
 }

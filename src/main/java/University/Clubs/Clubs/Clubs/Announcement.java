@@ -29,4 +29,10 @@ public class Announcement {
 
     @Column(name = "creation date")
     private LocalDate creation_date;
+
+    @ManyToOne
+    private Club club;
+
+    @ManyToOne
+    private PRManager prManager;
 }

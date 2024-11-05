@@ -1,10 +1,12 @@
 package University.Clubs.Clubs.Student.Service;
 
+import University.Clubs.Clubs.Clubs.PRManager;
+import University.Clubs.Clubs.Clubs.Repository.PRManagerRepository;
+import University.Clubs.Clubs.Clubs.Response.PRManagerResponse;
 import University.Clubs.Clubs.Student.Repository.StudentRepository;
 import University.Clubs.Clubs.Student.Request.StudentRequest;
 import University.Clubs.Clubs.Student.Response.StudentResponse;
 import University.Clubs.Clubs.Student.Student;
-import University.Clubs.Clubs.UniversitySide.Employee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +22,12 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private PRManagerRepository prManagerRepository;
 
     public ResponseEntity<?> save(StudentRequest studentRequest) {
 
+        PRManager prManager = prManagerRepository.findById(studentRequest.getPr_manager_id()).orElse(null);
         Student student = Student.builder()
                 .full_name(studentRequest.getFull_name())
                 .birth_date(studentRequest.getBirth_date())
@@ -36,8 +41,15 @@ public class StudentService {
                 .interests(studentRequest.getInterests())
                 .social_media_account(studentRequest.getSocial_media_account())
                 .gpa(studentRequest.getGpa())
+                .prManager(prManager)
                 .build();
         studentRepository.save(student);
+
+//        PRManagerResponse prManagerResponse = PRManagerResponse.builder()
+//                .pr_manager_id(prManager.getPr_manager_id())
+//                .university_number(prManager.getUniversity_number())
+//                .build();
+
         StudentResponse studentResponse = StudentResponse.builder()
                 .student_id(student.getStudent_id())
                 .full_name(student.getFull_name())
@@ -52,14 +64,17 @@ public class StudentService {
                 .interests(student.getInterests())
                 .social_media_account(student.getSocial_media_account())
                 .gpa(student.getGpa())
+//                .prManager(prManagerResponse)
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(studentResponse);
     }
 
     public ResponseEntity<?> getAll() {
+
         List<Student> students = studentRepository.findAll();
         List<StudentResponse> studentResponses = new ArrayList<>();
         for (Student student : students) {
+
             StudentResponse studentResponse = StudentResponse.builder()
                     .student_id(student.getStudent_id())
                     .full_name(student.getFull_name())
@@ -81,6 +96,7 @@ public class StudentService {
     }
 
     public ResponseEntity<?> findById(int id) {
+
         Student student = studentRepository.findById(id).orElse(null);
         if (student == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -104,6 +120,7 @@ public class StudentService {
     }
 
     public void deleteById(int id) {
+
         Student student = studentRepository.findById(id).orElse(null);
         if (student != null) {
             studentRepository.deleteById(id);
@@ -111,6 +128,7 @@ public class StudentService {
     }
 
     public Student update(Student student) {
+
         Student stud = studentRepository.findById(student.getStudent_id()).orElse(null);
 
         if (stud != null) {

@@ -1,7 +1,6 @@
 package University.Clubs.Clubs.Student.Request;
 
 import University.Clubs.Clubs.Student.Enum.College;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +24,6 @@ public class StudentRequest {
     private String interests;
     private String social_media_account;
     private String gpa;
+
+    private Integer pr_manager_id;
 }

@@ -1,7 +1,5 @@
 package University.Clubs.Clubs.Clubs.Request;
 
-import University.Clubs.Clubs.Clubs.Club;
-import University.Clubs.Clubs.Student.Student;
 import lombok.*;
 
 @AllArgsConstructor

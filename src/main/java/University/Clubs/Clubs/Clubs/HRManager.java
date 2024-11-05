@@ -1,10 +1,13 @@
 package University.Clubs.Clubs.Clubs;
 
+import University.Clubs.Clubs.Student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "hr manager")
@@ -15,16 +18,21 @@ import lombok.NoArgsConstructor;
 public class HRManager {
 
     @Id
-    @SequenceGenerator(name = "hr_manager_id" ,sequenceName = "hr_manager_id" ,allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "hr_manager_id")
-    private Integer hr_manager_id;
+    @Column(name = "hr_manager_id")
+    private Integer hr_manager_id = 1;
 
-    @Column(name = "full name")
-    private String full_name;
-
-    @Column(name = "username")
-    private String username;
+    @Column(name = "university_number")
+    private String university_number;
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany
+    private List<Club> clubs;
+
+    @OneToMany
+    private List<Appointment> appointments;
+
+    @OneToOne
+    private Student student;
 }

@@ -1,5 +1,6 @@
 package University.Clubs.Clubs.Clubs;
 
+import University.Clubs.Clubs.Student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,12 +20,15 @@ public class ClubManager {
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "club_manager_id")
     private Integer club_manager_id;
 
-    @Column(name = "full name")
-    private String full_name;
-
-    @Column(name = "username")
-    private String username;
+    @Column(name = "university_number")
+    private String university_number;
 
     @Column(name = "password")
     private String password;
+
+    @OneToOne
+    private Club club;
+
+    @OneToOne
+    private Student student;
 }

@@ -1,5 +1,6 @@
 package University.Clubs.Clubs.Clubs;
 
+import University.Clubs.Clubs.Student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,13 @@ public class Appointment {
 
     @Column(name = "appointment_date")
     private String appointment_date;
+
+    @ManyToOne
+    private PRManager prManager;
+
+    @ManyToOne
+    private HRManager hrManager;
+
+    @ManyToOne
+    private Student student;
 }

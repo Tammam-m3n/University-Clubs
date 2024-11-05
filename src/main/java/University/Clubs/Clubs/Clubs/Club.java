@@ -1,5 +1,6 @@
 package University.Clubs.Clubs.Clubs;
 
+import University.Clubs.Clubs.Clubs.Enum.ClubsName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,7 @@ public class Club {
     private Integer club_id;
 
     @Column(name = "name")
-    private String name;
+    private ClubsName name;
 
     @Column(name = "club type")
     private String club_type;
@@ -35,4 +36,19 @@ public class Club {
 
     @OneToMany
     private List<ClubMember> clubMembers;
+
+    @ManyToOne
+    private PRManager prManager;
+
+    @ManyToOne
+    private HRManager hrManager;
+
+    @OneToOne
+    private ClubManager clubManager;
+
+    @OneToMany
+    private List<ClubMembershipRequest> clubMembershipRequests;
+
+    @OneToMany
+    private List<Announcement> announcements;
 }

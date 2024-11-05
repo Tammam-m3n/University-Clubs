@@ -1,13 +1,16 @@
 package University.Clubs.Clubs.Clubs;
 
+import University.Clubs.Clubs.Student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
-@Table(name = "pr manager")
+@Table(name = "pr_manager")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,16 +18,21 @@ import lombok.NoArgsConstructor;
 public class PRManager {
 
     @Id
-    @SequenceGenerator(name = "pr_manager_id" ,sequenceName = "pr_manager_id" ,allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "pr_manager_id")
-    private Integer pr_manager_id;
+    @Column(name = "pr_manager_id")
+    private Integer pr_manager_id = 1;
 
-    @Column(name = "full name")
-    private String full_name;
+    @Column(name = "university_number", nullable = false)
+    private String university_number;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany
+    private List<Club> clubs;
+
+    @OneToMany
+    private List<Student> students;
+
+    @OneToOne
+    private Student student;
 }

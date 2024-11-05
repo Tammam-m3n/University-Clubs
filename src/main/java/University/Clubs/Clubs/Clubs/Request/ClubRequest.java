@@ -1,6 +1,6 @@
 package University.Clubs.Clubs.Clubs.Request;
 
-import jakarta.persistence.Column;
+import University.Clubs.Clubs.Clubs.Enum.ClubsName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +10,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class ClubRequest {
 
-    private String name;
+    private ClubsName name;
     private String club_type;
     private String description;
     private Boolean active;
 
+    private Integer pr_manager_id;
+    private Integer hr_manager_id;
+    private Integer club_manager_id;
 }

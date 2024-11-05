@@ -153,4 +153,16 @@ public class ClubMemberService {
             clubMemberRepository.deleteById(id);
         }
     }
+
+    public ClubMember update(ClubMember clubMember) {
+
+        ClubMember clubMember1 = clubMemberRepository.findById(clubMember.getClub_member_id()).orElse(null);
+
+        if (clubMember1 != null) {
+            clubMember1.setClub(clubMember.getClub());
+            clubMember1.setStudent(clubMember.getStudent());
+            clubMemberRepository.save(clubMember1);
+        }
+        return clubMember;
+    }
 }

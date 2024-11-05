@@ -1,5 +1,6 @@
 package University.Clubs.Clubs.Student.Response;
 
+import University.Clubs.Clubs.Clubs.Response.PRManagerResponse;
 import University.Clubs.Clubs.Student.Enum.College;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +28,6 @@ public class StudentResponse {
     private String interests;
     private String social_media_account;
     private String gpa;
+
+    private PRManagerResponse prManager;
 }
